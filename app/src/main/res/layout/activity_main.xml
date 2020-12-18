@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="20dp"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnchoose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="choose"/>
+    <ImageView
+        android:layout_below="@id/btnchoose"
+        android:id="@+id/imgview"
+        android:layout_marginTop="10dp"
+        android:layout_width="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="250dp"/>
+    <Button
+        android:layout_below="@id/imgview"
+        android:id="@+id/btnupload"
+        android:layout_marginTop="10dp"
+        android:text="upload"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btnpredict"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="predict"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btnupload"/>
+    <Button
+        android:id="@+id/signout"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Signout"/>
+
+</RelativeLayout>

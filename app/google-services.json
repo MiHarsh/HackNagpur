@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "559409934534",
+    "firebase_url": "https://testretro-a92c2-default-rtdb.firebaseio.com",
+    "project_id": "testretro-a92c2",
+    "storage_bucket": "testretro-a92c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559409934534:android:ae1011c6972665c13ba7c7",
+        "android_client_info": {
+          "package_name": "com.example.testretro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559409934534-r6enhd80iec89d2jor48t10rbr7fjn61.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.testretro",
+            "certificate_hash": "9a22f5bc4fe6bc2eccd27a46529e38cf983edba7"
+          }
+        },
+        {
+          "client_id": "559409934534-rumbbknajh586mth3q2bkp69ksls2dlm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACnIEPszKQIuwDEXpiIbuUu-T0l0L0FC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559409934534-rumbbknajh586mth3q2bkp69ksls2dlm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
