@@ -4,43 +4,96 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_margin="20dp"
+    android:background="#915f68"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btnchoose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="choose"/>
-    <ImageView
-        android:layout_below="@id/btnchoose"
-        android:id="@+id/imgview"
-        android:layout_marginTop="10dp"
-        android:layout_width="250dp"
-        android:layout_centerHorizontal="true"
-        android:layout_height="250dp"/>
+    tools:context=".MainActivity">
+    <RelativeLayout
+        android:id="@+id/card"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Skinegy"
+                android:textColor="#915f68"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="40dp"
+                android:fontFamily="cursive"/>
+            <Button
+                android:id="@+id/signout"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#915f68"
+                android:background="@drawable/border_signout"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Signout"/>
+            <Button
+                android:layout_below="@id/signout"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
+                android:padding="10dp"
+                android:background="#915f68"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:textColor="#ffffff"
+                android:id="@+id/btnchoose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="choose"/>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
     <Button
         android:layout_below="@id/imgview"
         android:id="@+id/btnupload"
-        android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="100dp"
         android:text="upload"
-        android:layout_alignParentRight="true"
+        android:padding="20dp"
+        android:textColor="#915f68"
+        android:background="@drawable/border_choose"
+        android:layout_toLeftOf="@id/center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/imgview"
+        android:id="@+id/center"/>
+    <ImageView
+
+        android:id="@+id/imgview"
+
+        android:layout_width="250dp"
+        android:scaleType="fitCenter"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="250dp"/>
+
     <Button
         android:id="@+id/btnpredict"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="predict"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/btnupload"/>
-    <Button
-        android:id="@+id/signout"
-        android:layout_alignParentBottom="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Signout"/>
+        android:padding="20dp"
+        android:layout_marginLeft="40dp"
+        android:textColor="#915f68"
+        android:background="@drawable/border_choose"
+        android:layout_marginTop="100dp"
+        android:layout_toRightOf="@id/center"
+        android:layout_below="@id/imgview"/>
+
 
 </RelativeLayout>
