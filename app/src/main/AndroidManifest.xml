@@ -11,7 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/custom">
-        <activity android:name=".skin_cancerActivity"></activity>
+        <activity android:name=".alzymerActivity"></activity>
+        <activity android:name=".brain_tumorActivity" />
+        <activity android:name=".pneumoniaActivity" />
+        <activity android:name=".covidActivity" />
+        <activity android:name=".breast_cancerActivity" />
+        <activity android:name=".eye_blindnessActivity" />
+        <activity android:name=".skin_cancerActivity" />
         <activity android:name=".RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
