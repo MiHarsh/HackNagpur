@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+      <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyA-SI9K3d8eP3JM-OI2ZAwemVjuNOLtedg",
+    authDomain: "skinegy-d4fb1.firebaseapp.com",
+    databaseURL: "https://skinegy-d4fb1-default-rtdb.firebaseio.com",
+    projectId: "skinegy-d4fb1",
+    storageBucket: "skinegy-d4fb1.appspot.com",
+    messagingSenderId: "755289752228",
+    appId: "1:755289752228:web:30860161fa5c30cac99c31"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HackOffV3.0</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+ <script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>    
+
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+.img-preview {
+    width: 256px;
+    height: 256px;
+    position: relative;
+    border: 5px solid #F8F8F8;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    margin-top: 1em;
+    margin-bottom: 1em;    
+}
+
+.img-preview>div {
+    width: 100%;
+    height: 100%;
+    background-size: 256px 256px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.loader {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+ html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: #222;
+  background: #F5F5F5;
+}
+nav{
+  z-index: 999;
+}
+.navbar{
+  padding: .8rem;
+}
+.navbar-nav li{
+  padding-right: 40px;
+  color: white;
+}
+.nav-link{
+  font-size: 1.1em !important;
+}
+.nav-item a{
+   color: white;
+   text-decoration:none;
+}
+.dropdown-menu a{
+  color: black;
+}
+ .nav-item a:hover, .dropdown-menu a:hover{
+  color: #EB3C62;
+}
+ .navbar-brand:hover {
+  color: #EB3C62;
+}
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero {
+  width: 100%;
+  height: 90vh;
+  background-image: url("slider-02.jpg"),url('{{url_for('static', filename='slider-02.jpg')}}');
+  background-size: cover;
+  position: relative;
+  margin-bottom: -50px;
+}
+
+#hero .container {
+  position: relative;
+}
+
+#hero h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  text-transform: uppercase;
+  color: #915F6D;
+}
+
+#hero h2 {
+  color: #915F6D;
+  margin: 10px 0 0 0;
+  font-size: 24px;
+}
+
+#hero .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 35px;
+  margin-top: 30px;
+  border-radius: 50px;
+  transition: 0.5s;
+  color: #fff;
+  background: #1977cc;
+}
+
+#hero .btn-get-started:hover {
+  background: #3291e6;
+}
+
+@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 992px) {
+  #hero {
+    margin-bottom: 0;
+    height: 100vh;
+  }
+  #hero .container {
+    padding-bottom: 63px;
+  }
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-height: 500px) {
+  #hero {
+    height: auto;
+  }
+}
+/*--------------------------------------------------------------
+# Why Us
+--------------------------------------------------------------*/
+.why-us .content {
+  padding: 30px;
+  background: #F5F5F5;
+  border-radius: 4px;
+  color: #000;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16), 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+
+.why-us .content h3 {
+  font-weight: 700;
+  font-size: 34px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.why-us .content p {
+  margin-bottom: 30px;
+}
+
+.why-us .content .more-btn {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 30px 8px 30px;
+  color: #fff;
+  border-radius: 50px;
+  transition: all ease-in-out 0.4s;
+}
+
+.why-us .content .more-btn i {
+  font-size: 14px;
+}
+
+.why-us .content .more-btn:hover {
+  color: #1977cc;
+  background: #fff;
+}
+
+.why-us .icon-boxes .icon-box {
+  text-align: center;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
+  width: 100%;
+}
+
+.why-us .icon-boxes .icon-box i {
+  font-size: 40px;
+  color: #1977cc;
+  margin-bottom: 30px;
+}
+
+.why-us .icon-boxes .icon-box h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 30px 0;
+}
+
+.why-us .icon-boxes .icon-box p {
+  font-size: 15px;
+  color: #848484;
+}
+
+/*--------------------------------------------------------------
+# Test
+--------------------------------------------------------------*/
+.top {
+  background-color: #915F6D;
+  color: #fff;
+  margin-top: -30px;
+  border-radius: 3px;
+  padding: 10px; /*
+  -moz-box-shadow:    0 3px 5px 6px #915F6D;
+  -webkit-box-shadow: 0 3px 5px 6px #915F6D;
+  box-shadow:         0 3px 3px 3px rgba(145,95,109, 0.5);*/
+  -webkit-box-shadow: 0 0 10px #915F6D;
+        box-shadow: 0 0 10px #915F6D;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16), 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+.ui {
+  margin: 5px;
+  border-radius: 3px;
+  font-size: 1rem;
+  text-align: center;
+  padding: 5px;
+  background-color: rgba(255,255,255,0.2);
+}
+.image {
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 10px #fff;
+        box-shadow: 0 0 10px #fff;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16), 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+#upload-file {
+  margin:20px;
+  text-align: center;
+  font-size: 0.75rem;
+}
+#btn-predict {
+  background-color: #915F6D;
+  color: #fff;
+  font-size: 0.8rem;
+  border-width: 0;
+  border-radius: 3px;
+  padding: 10px; 
+  -webkit-box-shadow: 0 0 10px #fff;
+        box-shadow: 0 0 10px #fff;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16), 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+#btn-predict:hover {
+  background-color: #C892A0;
+  border:1px #C892A0;
+  color: white;
+}
+
+
+.select {
+  color: #000;
+  font-size: 0.8rem;
+  border-width: 0;
+  margin:5px;
+  border-radius: 3px;
+  padding: 15px; 
+  cursor: pointer;
+}
+.activ{
+  background-color: #915F6D;
+  color: #fff;
+  font-size: 0.8rem;
+  border-width: 0;
+  margin:5px;
+  border-radius: 3px;
+  padding: 15px; 
+  -webkit-box-shadow: 0 0 10px #fff;
+        box-shadow: 0 0 10px #fff;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16), 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+
+  </style>
+</head>
+<body>
+
+<div>
+ <!--Navbar-->
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+  <div class="container-fluid">
+  <a class="navbar-brand" href="#">Skinegy</a>  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+    <span class="navbar-toggler-icon">
+    </span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+      <a href="#" class="nav-link">Home</a>
+    </li>
+    <li class="nav-item">
+      <a href="/#about" class="nav-link">About</a>
+    </li>
+    <li class="nav-item">
+      <a href="/#contact" class="nav-link">Contact</a>
+    </li>
+    <li class="nav-item">
+      <a href="/#faq" class="nav-link">Getting Started</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Category
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/imageUpload">Cancer</a>
+        <a class="dropdown-item" href="/covid">Covid-19</a>
+        <a class="dropdown-item" href="/bt">Brain Tumor</a>
+        <a class="dropdown-item" href="/alzymer">Alzymer</a>
+        <a class="dropdown-item" href="/pneumonia">Pneumonia</a>
+        <a class="dropdown-item" href="/malaria">Malaria</a>
+      </div>
+    </li>
+    </ul>
+  </div>
+  </div>
+</nav>
+
+<section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <h1>Skinegy</h1>
+      <h2>An AI solution to diagnosis of Skin Cancer</h2>
+    </div>
+  </section>
+<section id="why-us" class="why-us">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-12 d-flex align-items-stretch">
+            <div class="content">
+              <h3>Alzymer Test</h3>
+              <div class="row">
+                <div class="col-6">
+                  <div class="image">
+                    <div class="top">
+                      <div class="row">
+                        <div class="col-5">
+                          <div class="ui"><i class="fas fa-image" aria-hidden="true" style="margin-right: 5px;"></i> Upload Image</div>
+
+                        </div>
+                      </div>
+                  </div>
+                    <form id="upload-file" method="post" enctype="multipart/form-data">
+        <label for="imageUpload" class="upload-label">
+           
+        </label>
+        <input type="file" name="file" id="imageUpload" accept="image/*">
+<center>
+    <div class="image-section">
+        <div class="img-preview">
+            <div id="imagePreview">
+            </div>
+        </div>
+        <div> 
+            <button type="button" class="btn btn-primary btn-lg " onclick="save()" id="btn-predict">Predict!</button>
+        </div>
+    </div>
+    </center>
+ </form>
+
+                  </div>
+                </div> 
+                <div class="col-6"> 
+                  <div class="row">
+                    <div class="col-2 select first activ" onclick="first()" id="first"> 
+                      <div class="row d-flex justify-content-center">
+                        <i class="fas fa-link"></i>
+                      </div>
+                      <div class="row d-flex justify-content-center" style="margin-top: 5px;">
+                        Result
+                      </div> 
+                    </div>
+                    <div class="col-2 select second" onclick="second()" id="second"> 
+                      <div class="row d-flex justify-content-center">
+                        <i class="fas fa-file"></i>
+                      </div>
+                      <div class="row d-flex justify-content-center" style="margin-top: 5px;">
+                        Description
+                      </div>
+                    </div>
+                  </div>
+                  <div id="first1">
+                   <div class="loader" style="display:block;"></div>
+                  <p id="result">sonali
+                     <span> </span>
+                    </p>  </div>
+                    <div id="desc"  style="display:none;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+                    <h4>Name :</h4>
+                </div>
+                <div class="col-9">
+                    <h4 id="name"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <h4>Age :</h4>
+                </div>
+                <div class="col-9">
+                    <h4 id="age"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <h4>Sex :</h4>
+                </div>
+                <div class="col-9">
+                    <h4 id="sex"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <h4>Email-id :</h4>
+                </div>
+                <div class="col-9">
+                    <h4 id="email"></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+                </div>
+                <div class="col-3">
+                  <p style="color: #F5F5F5">
+                Diagnosis has never been more easier and reliable. Here at Medilab we bring together biology and AI 
+                to deliver you a trustworthy diagnosis.                
+              </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+    
+
+</div>
+</body>
+<script type="text/javascript">
+  // Initialize Firebase
+  
+  var storage = firebase.storage();
+        function save(){
+            var image=document.getElementById("imageUpload").files[0];
+            var imagename=image.name;
+            var storageRef = storage.ref('images/'+imagename);
+            var uploadtask=storageRef.put(image);
+            uploadtask.on('state_changed',function(snapshot){
+                var progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+                console.log("upload is "+progress+" done");
+            },function(error){
+                console.log(error.message);
+            },function(){
+                uploadtask=snapshot.ref.getDownloadURL().then(function(downloadURL){
+                    console.log(downloadURL);
+                });
+            });
+        }
+        firebase.auth().onAuthStateChanged(function(user){ 
+       if (user) { 
+  // User is signed in.
+        var id= user.uid;
+        
+        var ref = firebase.database().ref();
+        firebase.database().ref('/users/' + id).once('value').then((snapshot) => {
+           document.getElementById('name').innerHTML = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        document.getElementById('email').innerHTML = user.email;
+        document.getElementById('age').innerHTML = (snapshot.val() && snapshot.val().age) || 'Anonymous';
+        document.getElementById('sex').innerHTML = (snapshot.val() && snapshot.val().gender) || 'Anonymous';
+  // ...
+        });
+        } else {
+  // No user is signed in.
+  window.alert("Please Sign-Up first!");
+          }
+    });
+ function second() {  
+  var first =document.getElementById("first");
+   var second =document.getElementById("second");
+  first.className = first.className.replace(" activ", "");
+ second.className += " activ";
+ document.getElementById("desc").style.display="block";
+ document.getElementById("first1").style.display="none";
+};
+ function first() {  
+  var first =document.getElementById("first");
+   var second =document.getElementById("second");
+  second.className = second.className.replace(" activ", "");
+ first.className += " activ";
+ document.getElementById("desc").style.display="none";
+ document.getElementById("first1").style.display="block";
+};
+    </script>
+    </html>

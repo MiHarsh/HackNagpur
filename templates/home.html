@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Skinegy</title>
+	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyA-SI9K3d8eP3JM-OI2ZAwemVjuNOLtedg",
+    authDomain: "skinegy-d4fb1.firebaseapp.com",
+    databaseURL: "https://skinegy-d4fb1-default-rtdb.firebaseio.com",
+    projectId: "skinegy-d4fb1",
+    storageBucket: "skinegy-d4fb1.appspot.com",
+    messagingSenderId: "755289752228",
+    appId: "1:755289752228:web:30860161fa5c30cac99c31"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<link href="./style.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css">
+</head>
+<style type="text/css">
+	@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+ html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: #222;
+}
+.image {
+  top: 0; left: 0; right: 0; bottom: 0;
+  padding: 0;
+  margin:0 auto;
+
+}
+.navbar{
+  padding: .8rem;
+}
+.navbar-nav li{
+  padding-right: 20px;
+}
+.navbar-nav li a:hover{
+	color: #915F6D !important;
+}
+.nav-link{
+  font-size: 1.1em !important;
+}
+.carousel-inner img{
+  padding: 0;
+  margin:0 auto;
+  height: 100%;
+  width:100%;
+}
+.carousel-caption {
+  position: absolute;
+  top:50%;
+  transform: translateY(-50%);
+}
+.carousel-caption h1 {
+  font-size: 500%;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 15px #000;
+}
+.carousel-caption h3 {
+  font-size: 200%;
+  font-weight: 500;
+  text-shadow: 1px 1px 10px #000;
+  padding-bottom: 1rem;
+}
+.btn-primary {
+  background-color: #6648b1;
+  border: 1px solid #6648b1;
+}
+.btn-primary:hover {
+  background-color: #563d7c;
+  border:1px #563d7c;
+}
+.btn-outline-secondary:hover {
+  background-color: #915F6D;
+  border:1px #915F6D;
+}
+.jumbotron {
+  padding:1rem;
+  border-radius: 0;
+}
+.padding {
+  padding-bottom: 2rem;
+}
+.welcome {
+  width: 75%;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+.welcome hr {
+  border-top:  2px solid #b4b4b4;
+  width: 95%;
+  margin-top: .3rem;
+  margin-bottom: 1rem;
+}
+.fa-code {
+  color: #e54d26;
+  font-size: 4rem;
+  margin: 1rem;
+}
+.fa-bold {
+  color: #563d7c;
+  font-size: 4rem;
+  margin: 1rem;
+}
+.fa-css3 {
+  color: #2163af;
+  font-size: 4rem;
+  margin: 1rem;
+}
+.fun {
+  width: 100%;
+  margin-bottom: 2rem;
+  border:0;
+}
+.gif {
+  max-width: 100%;
+}
+.social a {
+  font-size: 4.5rem;
+  padding: 3rem;
+}
+.fa-facebook {
+  color: #3b5998;
+}
+.fa-twitter {
+  color: #00aced;
+}
+.fa-google-plus-g {
+  color: #dd4b39;
+}
+.fa-instagram {
+  color: #517fa4;
+}
+.fa-youtube {
+  color: #bb0000;
+}
+.fa-facebook:hover , .fa-twitter:hover , .fa-google-plus-g:hover ,
+.fa-instagram:hover , .fa-youtube:hover {
+  color:#d5d5d5;
+}
+footer {
+  background-color: #3f3f3f;
+  color: #d5d5d5;
+  padding-top: 2rem;
+  bottom: 0;
+}
+hr.light {
+  border-top: 1px solid #d5d5d5;
+  width: 75%;
+  margin-top:0.8rem;
+  margin-bottom: 1rem;
+}
+footer a {
+  color: #d5d5d5;
+}
+hr.light-100 {
+  border-top: 1px solid #d5d5d5;
+  width: 100%;
+  margin-top:0.8rem;
+  margin-bottom: 1rem;
+}
+
+
+
+
+
+
+
+
+/*---Media Queries --*/
+@media (max-width: 992px) {
+  .social a {
+    font-size:  4rem;
+    padding: 2rem;
+  }
+  }
+@media (max-width: 768px) {
+  .social a {
+    font-size:  2.5rem;
+    padding: 1.2rem;
+  }
+  .carousel-caption {
+      top: 45%;
+  }
+  .carousel-caption h1 {
+    font-size: 350%;
+  }
+  .carousel-caption h3 {
+    font-size: 140%;
+    font-weight: 400;
+    padding-bottom: 0.2rem;
+  }
+  .carousel-caption .btn {
+    font-size:  95%;
+    padding: 8px 14px;
+  }
+  .display-4 {
+    font-size: 100%;
+  }
+  
+}
+@media (max-width: 576px) {
+  .carousel-caption {
+      top: 40%;
+  }
+  .carousel-caption h1 {
+    font-size: 250%;
+  }
+  .carousel-caption h3 {
+    font-size: 110%;
+  }
+  .carousel-caption .btn {
+    font-size:  90%;
+    padding: 4px 8px;
+  }
+  .carousel-indicators {
+    display:  none;
+  }
+  .display-4 {
+    font-size: 160%;
+  }
+  .social a {
+    font-size:  2rem;
+    padding: 0.7rem;
+  }
+}
+
+
+/*---Firefox Bug Fix --*/
+.carousel-item {
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+}
+/*--- Fixed Background Image --*/
+figure {
+  position: relative;
+  width: 100%;
+  height: 60%;
+  margin: 0!important;
+}
+.fixed-wrap {
+  clip: rect(0, auto, auto, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#fixed {
+  background-image: url('{{url_for('static', filename='fixed.png')}}');
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  will-change: transform;
+}
+/*--- Bootstrap Padding Fix --*/
+[class*="col-"] {
+    padding: 1rem;
+}
+.registered {
+	display: none;
+	font-size:1rem;
+}
+.card {
+   border-color: #915F6D;
+   border-width: 0.1rem;
+}
+.aut {
+	background-color: #915F6D;
+  border:1px #915F6D;
+  color: white;
+}
+.aut:hover {
+	background-color: #C892A0;
+  border:1px #C892A0;
+  color: white;
+}
+
+</style>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+	<div class="container-fluid">
+	<a class="navbar-brand" href="#">Skinegy</a>	
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+		<span class="navbar-toggler-icon">
+		</span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarResponsive">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item active">
+			<a href="#" class="nav-link">Home</a>
+		</li>
+		<li class="nav-item">
+			<a href="#about" class="nav-link">About</a>
+		</li>
+		<li class="nav-item">
+			<a href="#contact" class="nav-link">Contact</a>
+		</li>
+		<li class="nav-item">
+			<a href="#faq" class="nav-link">Getting Started</a>
+		</li>
+		<li class="nav-item">
+			<a href="#login" class="nav-link">Login/Signup</a>
+		</li>
+		</ul>
+	</div>
+	</div>
+</nav>
+
+<!--- Image Slider -->
+<div  class="container-fluid image">
+	<div class="row text-center">
+		<div class="col-12">
+<div id="slides" class="carousel slide" data-ride="carousel">
+	<ul class="carousel-indicators">
+		<li data-target="#slides"  data-slide-to="0" class="active"></li>
+		<li data-target="#slides"  data-slide-to="1"></li>
+		<li data-target="#slides"  data-slide-to="2"></li>
+	</ul>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+		 <img  src="{{url_for('static', filename='slider-01.jpg')}}">
+		 <div class="carousel-caption">
+		 	<h1 class="display-2">Welcome to Skinegy!!</h1>
+		 </div>
+	 </div>
+	 <div class="carousel-item">
+		 <img  src="{{url_for('static', filename='slider-02.jpg')}}">
+	 </div>
+	 <div class="carousel-item">
+		 <img  src="{{url_for('static', filename='lab.jpg')}}">
+	 </div>
+	</div>
+	
+</div>
+</div>
+</div>
+</div>
+
+
+<!--- Two Column Section -->
+<div class="container-fluid padding" id="about">
+	<div class="row padding">
+		<div class="col-lg-6">
+			<h2 class="elementor-heading-title elementor-size-default"><span style="color: #2f7ee6" ;="">1 in 5 </span><br><span style="color: #5A5A5A" ;="">people will develop skin cancer</span></h2>
+			<div class="elementor-text-editor elementor-clearfix"><p><span style="font-weight: 400;">At Skinegy, we take the health of our users seriously. </span></p><p><a style="font-size: 16px; background-color: #ffffff;" href="https://www.skinegy.com/research/" target="_blank" rel="noopener"><strong>The latest research</strong></a><strong> proves that Skinegy can detect 96% of Malignant/Benign and 90% in their further subtypes . The sensitivity of general practitioners ranges from 61% and 66%, while the sensitivity of dermatologists is between 75% and 92%</strong><span style="font-weight: 400;"><strong>.</strong> </span></p><p>We aim to raise awareness of skin cancer and provide a <strong>regulated medical device</strong> to help individuals assess their risk and get to the doctor in time.  </p></div>
+				</div>
+		
+		<div class="col-lg-6">
+			<img src="{{url_for('static', filename='images.jpg')}}" alt="IMAGE" class="img-fluid" style="width: 100%">
+		</div>
+	</div>
+	
+</div>
+
+
+
+
+<hr class="my-4">
+
+<!--- Three Column Section -->
+<div class="container-fluid padding" id="faq">
+	<div class="row welcome text-center">
+		<div class="col-12">
+			<h1 class="display-4"><b>Getting Started</b></h1>
+		</div>
+		<hr>
+	</div>
+</div>
+<div class="container-fluid padding">
+	<div class="row text-center padding" style="font-size: 1rem;">
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<img src="{{url_for('static', filename='click.png')}}" alt="IMAGE" class="img-fluid">
+			<h3>Take a photo of your skin spot</h3>
+			<p>Open the Skinegy camera and take a photo of the skin spot that concerns you or manually upload a photo.
+Our app will assess your photo using our CE marked</p>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<img src="{{url_for('static', filename='receive.png')}}" alt="IMAGE" class="img-fluid">
+			<h3>Receive your risk assessment</h3>
+			<p>Within 30 seconds, you'll receive one of eight risk assessments based on the risk class including malignant/benign and their further sub-categories</p>
+		</div>
+		<div class=" col-sm-12 col-md-4">
+			<img src="{{url_for('static', filename='track.png')}}" alt="IMAGE" class="img-fluid">
+			<h3>Track your skin spots</h3>
+			<p>Securely save photos of your skin spots so you can look for changes over time. Set reminders so you can check your skin regularly.</p>
+		</div>
+	</div>
+	<hr class="my-4">
+</div>
+
+
+<!--- Fixed background -->
+<figure>
+	<div class="fixed-wrap">
+		<div id="fixed">
+			
+		</div>
+	</div>
+</figure>
+
+<!--- Meet the team -->
+<div class="container-fluid padding" id="login">
+	<div class="row welcome text-center">
+		<div class="col-12">
+			<h1 class="display-4">Start with SignUp</h1>
+		</div>
+		<hr>
+	</div>
+</div>
+
+<!--- Cards-->
+<div class="container-fluid padding">
+	<div class="row padding">
+		<div class="col-md-6">
+			<div class="card" style="text-align: center; height: 100%;">
+				<div class="card-body">
+					<center>
+					<form action="/login" method="post">
+					<h4 class="card-title" style="color: #915F6D; font-size: 2.5rem;"><u>Login</u></h4>
+					<p class="card-text">Email</p>
+					<input type="email" id="email_l" name="email" placeholder="Enter email"><br><br>
+					<p class="card-text">Password</p>
+					<input type="password" id="password_l" placeholder="Enter password" name="password">
+					<h5 class="registered" id="pswl_l" style="color: red"><i class="fa fa-exclamation-circle" aria-hidden="true" style="color: red"></i>Password must be atleast of 6 characters.</h5><br><br>
+					<button type="button" onclick="login()" class="btn btn-outline-secondary aut" type="submit">Login</button>
+					</form>
+				</center>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card" style="text-align: center; height: 100%;">
+				<div class="card-body">
+					<form>
+					<h4 class="card-title" style="color: #915F6D; font-size: 2.5rem;"><u>Signup</u></h4>
+					<p class="card-text">Email</p>
+					<input type="email" id="email_s" name="email" placeholder="Enter email">
+                    <h5 class="registered" id="registered" style="color: red"><i class="fa fa-exclamation-circle" aria-hidden="true" style="color: red"></i>This email is already registered!</h5>
+					<br><br>
+					<p class="card-text">Password</p>
+					<input type="password" id="password_s" placeholder="Enter password" name="password">
+					<h5 class="registered" id="pswl_s" style="color: red"><i class="fa fa-exclamation-circle" aria-hidden="true" style="color: red"></i>Password must be atleast of 6 characters.</h5><br><br>
+					<button type="button" onclick="signup()" class="btn btn-outline-secondary aut" type="submit">Signup</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--- Connect -->
+<footer>
+<div class="container-fluid padding" id="contact">
+	<div class="row text-center padding">
+		<div class="col-12">
+			<h2>Connect</h2>
+		</div>
+		<div class="col-12 social padding">
+			<a href="#"><i class="fab fa-facebook"></i></a>
+			<a href="#"><i class="fab fa-twitter"></i></a>
+			<a href="#"><i class="fab fa-google-plus-g"></i></a>
+			<a href="#"><i class="fab fa-instagram"></i></a>
+			<a href="#"><i class="fab fa-youtube"></i></a>
+		</div>
+	</div>
+</div>
+</footer>
+
+</body>
+<script type="text/javascript">
+
+	function signup(){
+       var email=document.getElementById("email_s").value;
+             /* var url = window.location.href+"imageUpload" ;
+           window.location.replace(url);
+           
+       window.alert("outside"); */
+     if(email=="") window.alert("Email cannot be empty!");
+     else if(document.getElementById("password_s").value<6) document.getElementById('pswl_s').style.display="block";
+     else {
+  firebase.auth().createUserWithEmailAndPassword(email, document.getElementById("password_s").value)
+  .then((user) => {
+     // Signed in 
+    // ...
+    //var url = "file:///C:/Users/HP/WebNode/fallfest%20frontend/profile.html";
+   window.location = '/profile';
+  })
+  .catch((FirebaseAuthUserCollisionException) => {
+    document.getElementById('registered').style.display="block";
+    // ..
+  })
+  .catch((error) => {
+    window.alert("Something went wrong, please try again!");
+    // ..
+  }); }
+
+	}
+
+
+	function login(){
+       var email=document.getElementById("email_l").value;
+      /* var url = window.location.href+"imageUpload" ;
+           window.location.replace(url); 
+           window.alert(email); */
+           if(email=="") window.alert("Email cannot be empty!");
+           else if(document.getElementById("password_l").value<6) document.getElementById('pswl_l').style.display="block";
+           else {
+     	firebase.auth().signInWithEmailAndPassword(email, document.getElementById("password_l").value)
+  .then(function(result) {
+    // result.user.tenantId should be ‘TENANT_PROJECT_ID’.
+		 window.location ='/imageUpload';
+           console.log(result);
+  }).catch(function(error) {
+    // Handle error.
+     window.alert("Error in login! Please try again!");
+  }); }
+}
+</script>
+</html>
