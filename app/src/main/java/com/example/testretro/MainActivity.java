@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     private void sendNetworkRequest(url_model m_url_model)
     {
         Retrofit.Builder builder=new Retrofit.Builder()
-                .baseUrl("https://aesthetic-rush-299007.ue.r.appspot.com/")
+                .baseUrl("https://skinegy-final.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit=builder.build();
         urlService client =retrofit.create(urlService.class);

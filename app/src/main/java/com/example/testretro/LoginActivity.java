@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity
         mLogin=findViewById(R.id.logbtn);
         mReg=findViewById(R.id.log_register);
         mAuth=FirebaseAuth.getInstance();
-        progressBar=findViewById(R.id.progress);
+        progressBar=findViewById(R.id.progress_login);
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
