@@ -47,7 +47,7 @@ $(document).ready(function () {
                 $('#result').fadeIn(600);
                 $('#result').text(' Result:  ' + data);
                 console.log(data+"\n");
-                $('.report').show();
+                $('#description').show();
                 console.log('Success!');
             },
         });
