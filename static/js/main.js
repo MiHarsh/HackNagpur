@@ -44,9 +44,23 @@ $(document).ready(function () {
             success: function (data) {
                 // Get and display the result
                 $('.loader').hide();
-                $('#result').fadeIn(600);
-                $('#result').text(' Result:  ' + data);
-                console.log(data+"\n");
+                //  $('#result').fadeIn(600);
+                //$('#result').text(' Result:  ' + data);
+                var header = $('#results thead');
+       var body = $('#results tbody');
+       
+       // Headers
+       var keyList = Object.keys(data);
+       
+       // Body
+       for (var h = 0; h < keyList.length; h++) {
+          var d = data[keyList[h]];
+          var hTr; 
+       $('#results tbody').append(hTr = $('<tr>'));
+          hTr.append($('<td>', { text: keyList[h] }));
+          hTr.append($('<td>', { text: d }));
+            
+       }
                 $('#description').show();
                 console.log('Success!');
             },
