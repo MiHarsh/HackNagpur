@@ -46,7 +46,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  
-
+<script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script> 
   <style type="text/css">
     @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 .img-preview {
@@ -395,7 +395,7 @@ nav{
         <div class="row">
           <div class="col-12 d-flex align-items-stretch">
             <div class="content">
-              <h3>Cancer Test</h3>
+              <h3>Skin Cancer Test</h3>
               <div class="row">
                 <div class="col-6">
                   <div class="image">
@@ -419,7 +419,7 @@ nav{
             </div>
         </div>
         <div> 
-            <button type="button" class="btn btn-primary btn-lg " onclick="save()" id="btn-predict">Predict!</button>
+            <button type="button" class="btn btn-primary btn-lg " onclick="save()" value="skincancer" id="btn-predict">Predict!</button>
         </div>
     </div>
     </center>
@@ -451,6 +451,7 @@ nav{
                   <p id="result">
                      <span> </span>
                     </p>  </div>
+                     <div id="description"  style="display:none;">
                     <div id="desc"  style="display:none;">
         <div class="container-fluid">
             <div class="row">
@@ -487,6 +488,7 @@ nav{
             </div>
         </div>
     </div>
+  </div>
                 </div>
                 <div class="col-3">
                   <p style="color: #F5F5F5">
@@ -560,63 +562,6 @@ nav{
  document.getElementById("desc").style.display="none";
  document.getElementById("first1").style.display="block";
 };
- $(document).ready(function () {
-    // Init
-    $('.image-section').hide();
-    $('.loader').hide();
-    $('#result').hide();
-
-    // Upload Preview
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-                $('#imagePreview').hide();
-                $('#imagePreview').fadeIn(650);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $("#imageUpload").change(function () {
-        $('.image-section').show();
-        $('#btn-predict').show();
-        $('#result').text('');
-        $('#result').hide();
-        readURL(this);
-    });
-
-    // Predict
-    $('#btn-predict').click(function () {
-        var form_data = new FormData($('#upload-file')[0]);
-
-        // Show loading animation
-        $(this).hide();
-        $('.loader').show();
-
-        // Make prediction by calling api /predict
-        $.ajax({
-            type: 'POST',
-            url: '/predict',
-            data: form_data,
-            contentType: false,
-            cache: false,
-            processData: false,
-            async: true,
-            success: function (data) {
-                // Get and display the result
-                //$('.loader').hide();
-               // $('#result').fadeIn(600);
-               // $('#result').text(' Result:  ' + data);
-                console.log(data+"\n");
-                $('.report').show();
-                $('.heading').show();
-                console.log('Success!');
-            },
-        });
-    });
-
-});
 
     </script>
     </html>
