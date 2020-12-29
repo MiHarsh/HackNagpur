@@ -55,8 +55,10 @@ def model_predict(file, model):
     image = np.transpose(image, (2, 0, 1)).astype(np.float32)
     image = torch.tensor([image], dtype=torch.float)
     preds = model(image)
-    preds = np.argmax(preds.detach().numpy())
-    return preds
+    probs  = preds.detach().numpy()[0]
+    probs = np.exp(probs)/np.sum(np.exp(probs))
+    return probs
+
 
 @app.route('/')
 def home():
@@ -147,11 +149,17 @@ def upload_braintumor():
 def upload_skincancer():
     # Get the file from post request
     f = request.files['file']
+    labs=['MELANOMA (MALIGNANT)', 'MELANOCYTIC NEVUS (BENIGN)/ NORMAL SKIN /RASH', 'BASAL CELL CARCINOMA (BENIGN)', 'ACTINIC KERATOSIS (BENIGN)', 'BENIGN KERATOSIS (BENIGN)', 'DERMATOFIBROMA (NON CANCEROUS-BENIGN)', 'VASCULAR LESION (MAYBE BENIGN MAYBE MALIGNANT)', 'SQUAMOUS CELL CARCINOMA(MALIGNANT)']
     # Make prediction
-    preds = model_predict(f, model_canc)
-    result = labels['skincancer'][preds]            
-    return result
-    
+    probs = model_predict(f, model)
+    preds = np.argmax(probs)
+    result = labs[preds]
+    probs = ["%.4f" % x for x in probs]
+    outs={}
+    for i in range(lens(labs)):
+         outs[labs[i]]=probs[i]
+   # return {'Categories':labs,'Probabilities':probs}
+    return outs
 @app.route('/covid/predict', methods=['POST'])
 def upload_covid():
     # Get the file from post request
