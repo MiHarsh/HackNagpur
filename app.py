@@ -129,13 +129,13 @@ def upload_alzymer():
         skin_lesion=request.get_json()
         image_url=skin_lesion['url']
         urllib.request.urlretrieve(image_url, "sample.png")
-    # Make prediction
-    probs = model_predict("sample.png", model_alzheimer)
-    labs = labels['alzheimer']
-    probs = ["%.4f" % x for x in probs]
-    outs = {}
-    for i in range(len(labs)):
-        outs[labs[i]]=probs[i]
+        # Make prediction
+        probs = model_predict("sample.png", model_alzheimer)
+        labs = labels['alzheimer']
+        probs = ["%.4f" % x for x in probs]
+        outs = {}
+        for i in range(len(labs)):
+            outs[labs[i]]=probs[i]
     #return outs
     return jsonify({'result':outs})
     
