@@ -44,23 +44,10 @@ $(document).ready(function () {
             success: function (data) {
                 // Get and display the result
                 $('.loader').hide();
-              //  $('#result').fadeIn(600);
-                //$('#result').text(' Result:  ' + data);
-                var header = $('#results thead');
-       var body = $('#results tbody');
-       var hTr;
-       $('#results thead').append(hTr = $('<tr>'));
-       // Headers
-       var keyList = Object.keys(data);
-       for (var h = 0; h < keyList.length; h++) {
-          hTr.append($('<td>', { text: keyList[h] }))
-       }
-       // Body
-       for (var h = 0; h < keyList.length; h++) {
-          var d = data[keyList[h]];
-          $('#results-rows').append($('<td>', { text: d }));
-            
-       }
+                $('#result').fadeIn(600);
+                $('#result').text(' Result:  ' + data);
+                console.log(data+"\n");
+                $('#description').show();
                 console.log('Success!');
             },
         });
