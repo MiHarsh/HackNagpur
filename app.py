@@ -117,7 +117,7 @@ def upload_alzymer():
     return result
     
 @app.route('/pneumonia/predict', methods=['POST'])
-def upload_alzymer():
+def upload_pneumonia():
     # Get the file from post request
     f = request.files['file']
     # Make prediction
@@ -126,7 +126,7 @@ def upload_alzymer():
     return result
     
 @app.route('/aptos/predict', methods=['POST'])
-def upload_alzymer():
+def upload_aptos():
     # Get the file from post request
     f = request.files['file']
     # Make prediction
@@ -135,7 +135,7 @@ def upload_alzymer():
     return result
     
 @app.route('/braintumor/predict', methods=['POST'])
-def upload_alzymer():
+def upload_braintumor():
     # Get the file from post request
     f = request.files['file']
     # Make prediction
@@ -144,7 +144,7 @@ def upload_alzymer():
     return result
     
 @app.route('/skincancer/predict', methods=['POST'])
-def upload_alzymer():
+def upload_skincancer():
     # Get the file from post request
     f = request.files['file']
     # Make prediction
@@ -153,7 +153,7 @@ def upload_alzymer():
     return result
     
 @app.route('/covid/predict', methods=['POST'])
-def upload_alzymer():
+def upload_covid():
     # Get the file from post request
     f = request.files['file']
     # Make prediction
@@ -162,7 +162,7 @@ def upload_alzymer():
     return result
     
 @app.route('/breastcancer/predict', methods=['POST'])
-def upload_alzymer():
+def upload_breastcancer():
     # Get the file from post request
     f = request.files['file']
     # Make prediction
