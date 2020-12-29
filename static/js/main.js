@@ -31,11 +31,11 @@ $(document).ready(function () {
         // Show loading animation
         $(this).hide();
         $('.loader').show();
-
+        var categ=$(this).val();
         // Make prediction by calling api /predict
         $.ajax({
             type: 'POST',
-            url: '/predict',
+            url:'/'+categ+ '/predict',
             data: form_data,
             contentType: false,
             cache: false,
@@ -57,8 +57,8 @@ $(document).ready(function () {
           var d = data[keyList[h]];
           var hTr; 
        $('#results tbody').append(hTr = $('<tr>'));
-          hTr.append($('<td>', { text: keyList[h] }));
-          hTr.append($('<td>', { text: d }));
+          hTr.append($('<td style="border:none;">', { text: keyList[h] }));
+          hTr.append($('<td id="prob" style="border:none;">', { text: d }));
             
        }
                 $('#results').show();
