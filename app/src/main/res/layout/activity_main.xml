@@ -6,103 +6,384 @@
     android:layout_width="match_parent"
     android:background="#915f68"
     android:layout_height="match_parent"
-
     tools:context=".MainActivity">
-    <RelativeLayout
-        android:id="@+id/card"
-        android:background="@drawable/border_choose"
+   <TextView
+       android:id="@+id/title"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Medivision"
+       android:textSize="36sp"
+       android:layout_margin="20dp"
+       android:fontFamily="sans-serif-black"
+       android:textColor="#ffffff"/>
+    <Button
+        android:id="@+id/signout"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/border_signout"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Signout"/>
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        android:id="@+id/instructions"
+        android:layout_below="@id/title"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-        <RelativeLayout
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="0.25"
             android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:src="@drawable/tapi" />
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Skinegy"
-                android:textColor="#915f68"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="40dp"
-                android:fontFamily="cursive"/>
-            <Button
-                android:id="@+id/signout"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:textColor="#915f68"
-                android:background="@drawable/border_signout"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Signout"/>
-            <Button
-                android:layout_below="@id/signout"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="20dp"
-                android:padding="10dp"
-                android:background="#915f68"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:textColor="#ffffff"
-                android:id="@+id/btnchoose"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="choose"/>
+                android:text="Tap the disease icon"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:layout_marginTop="3dp"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:orientation="vertical"
+        android:layout_weight="0.25"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:src="@drawable/choose" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose the picture"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:layout_marginTop="3dp"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:src="@drawable/upload" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upload the picture"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:layout_marginTop="3dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:src="@drawable/predict" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Click the predict button"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:layout_marginTop="3dp"/>
+        </LinearLayout>
 
+    </LinearLayout>
 
-        </RelativeLayout>
-    </RelativeLayout>
-
-
-    <Button
-        android:layout_below="@id/imgview"
-        android:id="@+id/btnupload"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="50dp"
-        android:text="upload"
-        android:padding="20dp"
-        android:textColor="#915f68"
-        android:background="@drawable/border_choose"
-        android:layout_toLeftOf="@id/center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/imgview"
-        android:id="@+id/center"/>
-    <ImageView
-
-        android:id="@+id/imgview"
-
+    <ScrollView
+        android:layout_below="@id/instructions"
+        android:layout_above="@id/bottom_navigation"
         android:layout_width="match_parent"
-        android:src="@drawable/back"
-        android:scaleType="centerCrop"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_height="300dp"/>
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:text="Alzheimer"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:fontFamily="cursive"
+            android:textStyle="bold"
+            />
+            <LinearLayout
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:elevation="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff">
+        <ImageButton
+            android:id="@+id/alzheimer_btn"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="#ffffff"
+            android:scaleType="centerCrop"
+            android:src="@drawable/alzheimer"
+            android:layout_margin="20dp"
+            />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Alzheimer-A progressive disease that destroys memory and other important mental functions."
+                    android:textColor="#915f68"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="Brain Tumor"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:fontFamily="cursive"
+                android:textStyle="bold"
+                />
+            <LinearLayout
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:elevation="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff">
+                <ImageButton
+                    android:id="@+id/brain_tumor_btn"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:background="#ffffff"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/brain"
+                    android:layout_margin="20dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Brain Tumor-A cancerous or non-cancerous mass or growth of abnormal cells in the brain."
+                    android:textColor="#915f68"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="Breast Cancer"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:fontFamily="cursive"
+                android:textStyle="bold"
+                />
+            <LinearLayout
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:elevation="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff">
+                <ImageButton
+                    android:id="@+id/breast_cancer_btn"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:background="#ffffff"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/breastcancer"
+                    android:layout_margin="20dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Breast Cancer-A cancer that forms in the cells of the breasts."
+                    android:textColor="#915f68"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="Covid"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:fontFamily="cursive"
+                android:textStyle="bold"
+                />
+            <LinearLayout
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:elevation="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff">
+                <ImageButton
+                    android:id="@+id/covid_btn"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:background="#ffffff"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/covid"
+                    android:layout_margin="20dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Covid-Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus."
+                    android:textColor="#915f68"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="Eye Blindness"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:fontFamily="cursive"
+                android:textStyle="bold"
+                />
+            <LinearLayout
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:elevation="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff">
+                <ImageButton
+                    android:id="@+id/eye_blindness_btn"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:background="#ffffff"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/eye"
+                    android:layout_margin="20dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Eye Blindness-Complete or partial loss of vision."
+                    android:textColor="#915f68"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="Pneumonia"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:fontFamily="cursive"
+                android:textStyle="bold"
+                />
+            <LinearLayout
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:elevation="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff">
+                <ImageButton
+                    android:id="@+id/pneumonia_btn"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:background="#ffffff"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/pneumonia"
+                    android:layout_margin="20dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pneumonia-Infection that inflames air sacs in one or both lungs, which may fill with fluid."
+                    android:textColor="#915f68"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="Skin Cancer"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:fontFamily="cursive"
+                android:textStyle="bold"
+                />
+            <LinearLayout
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:elevation="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff">
+                <ImageButton
+                    android:id="@+id/skin_cancer_btn"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:background="#ffffff"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/skin"
+                    android:layout_margin="20dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Skin Cancer-The abnormal growth of skin cells."
+                    android:textColor="#915f68"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
-    <Button
-        android:id="@+id/btnpredict"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="predict"
-        android:padding="20dp"
-        android:layout_marginLeft="40dp"
-        android:textColor="#915f68"
-        android:background="@drawable/border_choose"
-        android:layout_marginTop="50dp"
-        android:layout_toRightOf="@id/center"
-        android:layout_below="@id/imgview"/>
-    <Button
-        android:id="@+id/alymer_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="alzymer"
-        android:layout_margin="20dp"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:id="@+id/bottom_navigation"
@@ -114,6 +395,4 @@
         app:itemIconTint="#915f68"
         android:background="?android:attr/windowBackground"
         />
-
-
 </RelativeLayout>

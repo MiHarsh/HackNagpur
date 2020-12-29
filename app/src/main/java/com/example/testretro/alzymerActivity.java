@@ -12,6 +12,8 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,6 +41,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class alzymerActivity extends AppCompatActivity {
 
     Button ch,up,Signout;
+    TextView result;
+    ProgressBar progressBar;
     ImageView img;
     String recent="";
     StorageReference mStorageRef;
@@ -53,6 +57,8 @@ public class alzymerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alzymer);
         predict=findViewById(R.id.btnpredict);
+        progressBar=findViewById(R.id.progress);
+        result=findViewById(R.id.result);
         mAuth=FirebaseAuth.getInstance();
         current_user_id=mAuth.getCurrentUser().getUid();
         mStorageRef= FirebaseStorage.getInstance().getReference("Images");
@@ -64,6 +70,8 @@ public class alzymerActivity extends AppCompatActivity {
         predict.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                predict.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
                 url_model user=new url_model(recent);
                 sendNetworkRequest(user);
             }
@@ -87,6 +95,7 @@ public class alzymerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 up.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
                 if(uploadTask!=null && uploadTask.isInProgress())
                 {
                     Toast.makeText(alzymerActivity.this, "Upload is in progress", Toast.LENGTH_SHORT).show();
@@ -111,7 +120,12 @@ public class alzymerActivity extends AppCompatActivity {
             public void onResponse(Call<url_model> call, Response<url_model> response) {
                 if(response.body()!=null)
                 {
-                    Toast.makeText(alzymerActivity.this, "Result"+response.body().getResult(), Toast.LENGTH_SHORT).show();}
+                    progressBar.setVisibility(View.GONE);
+                    //predict.setVisibility(View.GONE);
+                    result.setVisibility(View.VISIBLE);
+                    result.setText("Result: "+response.body().getResult());
+                    //Toast.makeText(alzymerActivity.this, "Result"+response.body().getResult(), Toast.LENGTH_SHORT).show();
+                    }
                 else {
                     Toast.makeText(alzymerActivity.this, "Not Working", Toast.LENGTH_SHORT).show();
                 }
@@ -148,7 +162,7 @@ public class alzymerActivity extends AppCompatActivity {
                                 UsersRef.child(current_user_id).updateChildren(m).addOnCompleteListener(new OnCompleteListener() {
                                     @Override
                                     public void onComplete(@NonNull Task task) {
-                                        Toast.makeText(alzymerActivity.this, "Added", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(alzymerActivity.this, "Added", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                 Calendar calFordDate = Calendar.getInstance();
@@ -184,9 +198,10 @@ public class alzymerActivity extends AppCompatActivity {
                                         .addOnCompleteListener(new OnCompleteListener() {
                                             @Override
                                             public void onComplete(@NonNull Task task) {
-                                                Toast.makeText(alzymerActivity.this, "Done", Toast.LENGTH_SHORT).show();
+                                                //Toast.makeText(alzymerActivity.this, "Done", Toast.LENGTH_SHORT).show();
                                             }
                                         });
+                                        progressBar.setVisibility(View.GONE);
                                         predict.setVisibility(View.VISIBLE);
                                 //Toast.makeText(MainActivity.this, downloadUrl, Toast.LENGTH_SHORT).show();
                             }

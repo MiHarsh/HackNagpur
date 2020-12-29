@@ -19,7 +19,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alzymer"
+                android:text="Alzheimer"
                 android:textColor="#915f68"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
@@ -99,6 +99,28 @@
         android:layout_centerHorizontal="true"
         android:visibility="gone"
         android:layout_below="@id/imgview"/>
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Result"
+        android:padding="20dp"
+        android:textColor="#915f68"
+        android:visibility="gone"
+        android:background="@drawable/border_choose"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/imgview"/>
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:visibility="gone"
+        />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:id="@+id/bottom_navigation"
