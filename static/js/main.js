@@ -56,8 +56,8 @@ $(document).ready(function () {
           var d = data[keyList[h]];
           var hTr; 
        $('#results tbody').append(hTr = $('<tr>'));
-          hTr.append($('<td style="border:none;">', { text: keyList[h] }));
-          hTr.append($('<td id="prob" style="border:none;">', { text: d }));
+          hTr.append($('<td>', { text: keyList[h] }));
+          hTr.append($('<td>', { text: d }));
             
        }
                 $('#description').show();
