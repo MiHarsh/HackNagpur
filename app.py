@@ -33,7 +33,7 @@ model_alzheimer.eval()
 model_aptos = torch.load("Aptos.pth")
 model_aptos.eval()
 
-model_tumor = torch.laod("Braintumor.pth")
+model_tumor = torch.load("Braintumor.pth")
 model_tumor.eval()
 
 model_covid = torch.load("Covid.pth")
