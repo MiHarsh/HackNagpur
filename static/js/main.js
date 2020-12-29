@@ -55,11 +55,10 @@ $(document).ready(function () {
        // Body
        for (var h = 0; h < keyList.length; h++) {
           var d = data[keyList[h]];
-          var hTr; 
+          var hTr;
        $('#results tbody').append(hTr = $('<tr>'));
-          hTr.append($('<td>', { text: keyList[h] }));
-          hTr.append($('<td>', { text: d }));
-            
+          hTr.append('<td style="border:none;">'+keyList[h]+'</td>');
+          hTr.append('<td style="border:none; color: #915F6D; font-weight: 700;">'+d+'</td>');
        }
                 $('#results').show();
                 $('#description').show();
