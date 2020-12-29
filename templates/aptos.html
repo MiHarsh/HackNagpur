@@ -45,9 +45,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
- <script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>    
-
+  <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  
+<script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script> 
   <style type="text/css">
     @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 .img-preview {
@@ -370,12 +369,13 @@ nav{
         Category
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="/imageUpload">Cancer</a>
+        <a class="dropdown-item" href="/imageUpload">Skin Cancer</a>
+        <a class="dropdown-item" href="/breastcancer">Breast Cancer</a>
         <a class="dropdown-item" href="/covid">Covid-19</a>
         <a class="dropdown-item" href="/bt">Brain Tumor</a>
         <a class="dropdown-item" href="/alzymer">Alzymer</a>
         <a class="dropdown-item" href="/pneumonia">Pneumonia</a>
-        <a class="dropdown-item" href="/malaria">Malaria</a>
+        <a class="dropdown-item" href="/aptos">APTOS</a>
       </div>
     </li>
     </ul>
@@ -395,7 +395,7 @@ nav{
         <div class="row">
           <div class="col-12 d-flex align-items-stretch">
             <div class="content">
-              <h3>Malaria Test</h3>
+              <h3>APTOS Test</h3>
               <div class="row">
                 <div class="col-6">
                   <div class="image">
@@ -419,7 +419,7 @@ nav{
             </div>
         </div>
         <div> 
-            <button type="button" class="btn btn-primary btn-lg " onclick="save()" id="btn-predict">Predict!</button>
+            <button type="button" class="btn btn-primary btn-lg " onclick="save()" value="aptos" id="btn-predict">Predict!</button>
         </div>
     </div>
     </center>
@@ -448,9 +448,10 @@ nav{
                   </div>
                   <div id="first1">
                    <div class="loader" style="display:block;"></div>
-                  <p id="result">sonali
+                  <p id="result">
                      <span> </span>
                     </p>  </div>
+                     <div id="description"  style="display:none;">
                     <div id="desc"  style="display:none;">
         <div class="container-fluid">
             <div class="row">
@@ -487,6 +488,7 @@ nav{
             </div>
         </div>
     </div>
+  </div>
                 </div>
                 <div class="col-3">
                   <p style="color: #F5F5F5">
@@ -560,5 +562,6 @@ nav{
  document.getElementById("desc").style.display="none";
  document.getElementById("first1").style.display="block";
 };
+
     </script>
     </html>

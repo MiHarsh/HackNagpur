@@ -79,10 +79,15 @@ def bt():
     # image upload page
     return render_template('bt.html')
 
-@app.route('/malaria',methods=['GET'])
-def malaria():
+@app.route('/aptos',methods=['GET'])
+def aptos():
     # image upload page
-    return render_template('malaria.html')
+    return render_template('aptos.html')
+
+@app.route('/breastcancer',methods=['GET'])
+def breastcancer():
+    # image upload page
+    return render_template('breastcancer.html')
 
 @app.route('/pneumonia',methods=['GET'])
 def pneumonia():
