@@ -122,8 +122,9 @@ def upload_alzymer():
     for i in range(len(labs)):
         outs[labs[i]]=probs[i]
     return outs
+
 @app.route('/alzymer/predict1', methods=['POST'])
-def upload_alzymer():
+def upload_alzymer1():
     # Get the file from post request
     if request.method =='POST':
         skin_lesion=request.get_json()
