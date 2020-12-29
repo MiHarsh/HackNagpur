@@ -1,4 +1,5 @@
-{% extends "category_header.html" %}
+{% extends "category_header.html" %}  {% block content %}
+
 <section id="why-us" class="why-us">
       <div class="container">
 
@@ -7,11 +8,11 @@
             <div class="content">
               <h3>Skin Cancer Test</h3>
               <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-12">
                   <div class="image">
                     <div class="top">
                       <div class="row">
-                        <div class="col-5">
+                        <div class="col-6 col-lg-5">
                           <div class="ui"><i class="fas fa-image" aria-hidden="true" style="margin-right: 5px;"></i> Upload Image</div>
 
                         </div>
@@ -37,9 +38,9 @@
 
                   </div>
                 </div> 
-                <div class="col-6"> 
+                <div class="col-lg-6 col-md-12""> 
                   <div class="row">
-                    <div class="col-2 select first activ" onclick="first()" id="first"> 
+                    <div class="col-lg-2 col-3 select first activ" onclick="first()" id="first"> 
                       <div class="row d-flex justify-content-center">
                         <i class="fas fa-link"></i>
                       </div>
@@ -47,7 +48,7 @@
                         Result
                       </div> 
                     </div>
-                    <div class="col-2 select second" onclick="second()" id="second"> 
+                    <div class="col-lg-2 col-3 select second" onclick="second()" id="second"> 
                       <div class="row d-flex justify-content-center">
                         <i class="fas fa-file"></i>
                       </div>
@@ -58,9 +59,21 @@
                   </div>
                   <div id="first1">
                    <div class="loader" style="display:block;"></div>
-                  <p id="result">
-                     <span> </span>
-                    </p>  </div>
+                 <div class="row"> <div class="col-12 col-lg-8">
+                  <table id="results" class="table" style="display:none;">
+                    <thead>
+                       <tr>
+                       <td style="border:none;"><b>Category</b></td>
+                       <td style="border:none;"><b>Probability</b></td>
+                       </tr>                            
+                    </thead>
+                    <tbody>
+                     
+                       </tbody>
+                     </table>
+                 </div>
+               </div>                                 
+                      </div>
                      <div id="description"  style="display:none;">
                     <div id="desc"  style="display:none;">
         <div class="container-fluid">
@@ -101,7 +114,7 @@
   </div>
                 </div>
                 <div class="col-3">
-                  <p style="color: #F5F5F5">
+                  <p style="color: #F5F5F5; opacity: 0;">
                 Diagnosis has never been more easier and reliable. Here at Medilab we bring together biology and AI 
                 to deliver you a trustworthy diagnosis.                
               </p>
@@ -117,61 +130,5 @@
     
 
 </div>
-</body>
-<script type="text/javascript">
-  // Initialize Firebase
-  
-  var storage = firebase.storage();
-        function save(){
-            var image=document.getElementById("imageUpload").files[0];
-            var imagename=image.name;
-            var storageRef = storage.ref('images/'+imagename);
-            var uploadtask=storageRef.put(image);
-            uploadtask.on('state_changed',function(snapshot){
-                var progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-                console.log("upload is "+progress+" done");
-            },function(error){
-                console.log(error.message);
-            },function(){
-                uploadtask=snapshot.ref.getDownloadURL().then(function(downloadURL){
-                    console.log(downloadURL);
-                });
-            });
-        }
-        firebase.auth().onAuthStateChanged(function(user){ 
-       if (user) { 
-  // User is signed in.
-        var id= user.uid;
-        
-        var ref = firebase.database().ref();
-        firebase.database().ref('/users/' + id).once('value').then((snapshot) => {
-           document.getElementById('name').innerHTML = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-        document.getElementById('email').innerHTML = user.email;
-        document.getElementById('age').innerHTML = (snapshot.val() && snapshot.val().age) || 'Anonymous';
-        document.getElementById('sex').innerHTML = (snapshot.val() && snapshot.val().gender) || 'Anonymous';
-  // ...
-        });
-        } else {
-  // No user is signed in.
-  window.alert("Please Sign-Up first!");
-          }
-    });
- function second() {  
-  var first =document.getElementById("first");
-   var second =document.getElementById("second");
-  first.className = first.className.replace(" activ", "");
- second.className += " activ";
- document.getElementById("desc").style.display="block";
- document.getElementById("first1").style.display="none";
-};
- function first() {  
-  var first =document.getElementById("first");
-   var second =document.getElementById("second");
-  second.className = second.className.replace(" activ", "");
- first.className += " activ";
- document.getElementById("desc").style.display="none";
- document.getElementById("first1").style.display="block";
-};
 
-    </script>
-    </html>
+{% endblock %}

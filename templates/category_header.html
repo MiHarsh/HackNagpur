@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
-</head>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 
@@ -202,7 +200,6 @@ nav{
 
 .why-us .content h3 {
   font-weight: 700;
-  font-size: 34px;
   text-align: center;
   margin-bottom: 30px;
 }
@@ -279,6 +276,56 @@ nav{
   padding: 5px;
   background-color: rgba(255,255,255,0.2);
 }
+ #prob {
+  color: #915F6D;
+  font-weight: 700;
+}
+
+@media (min-width: 1024px) {
+  .h4, h4 {
+    font-size: 0.9rem;
+}
+td{
+  font-size:0.7rem;
+}
+.h3, h3 {
+    font-size: 1.5rem;
+}
+  .ui{
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .h4, h4 {
+    font-size: 0.8rem;
+}
+td{
+  font-size:0.7rem;
+}
+ .h3, h3 {
+    font-size: 1.1rem;
+}
+ .ui{
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-height: 500px) {
+  .h4, h4 {
+    font-size: 0.7rem;
+}
+td{
+  font-size:0.5rem;
+}
+  .h3, h3 {
+    font-size: 0.9rem;
+}
+  .ui{
+    font-size: 0.7rem;
+  }
+}
+
 .image {
   border-radius: 5px;
   padding: 10px;
@@ -370,7 +417,7 @@ nav{
         <a class="dropdown-item" href="/bt">Brain Tumor</a>
         <a class="dropdown-item" href="/alzymer">Alzymer</a>
         <a class="dropdown-item" href="/pneumonia">Pneumonia</a>
-        <a class="dropdown-item" href="/aptos">APTOS</a>
+        <a class="dropdown-item" href="/aptos">Eye Blindness</a>
       </div>
     </li>
     </ul>
@@ -380,7 +427,69 @@ nav{
 
 <section id="hero" class="d-flex align-items-center">
     <div class="container">
-      <h1>Skinegy</h1>
-      <h2>An AI solution to diagnosis of Skin Cancer</h2>
+      <h1>Medivision</h1>
+      <h2>An AI solution to diagnosis</h2>
     </div>
   </section>
+{% block content %}{% endblock %}
+  </body>
+  <script type="text/javascript">
+  // Initialize Firebase
+  
+  var storage = firebase.storage();
+        function save(){
+            var image=document.getElementById("imageUpload").files[0];
+            var imagename=image.name;
+            var storageRef = storage.ref('images/'+imagename);
+            var uploadtask=storageRef.put(image);
+            uploadtask.on('state_changed',function(snapshot){
+                var progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+                console.log("upload is "+progress+" done");
+            },function(error){
+                console.log(error.message);
+            },function(){
+                uploadtask=snapshot.ref.getDownloadURL().then(function(downloadURL){
+                    console.log(downloadURL);
+                });
+            });
+        }
+        firebase.auth().onAuthStateChanged(function(user){ 
+       if (user) { 
+  // User is signed in.
+        var id= user.uid;
+        
+        var ref = firebase.database().ref();
+        firebase.database().ref('/users/' + id).once('value').then((snapshot) => {
+           document.getElementById('name').innerHTML = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        document.getElementById('email').innerHTML = user.email;
+        document.getElementById('age').innerHTML = (snapshot.val() && snapshot.val().age) || 'Anonymous';
+        document.getElementById('sex').innerHTML = (snapshot.val() && snapshot.val().gender) || 'Anonymous';
+  // ...
+        });
+        } else {
+  // No user is signed in.
+  window.alert("Please Sign-Up first!");
+          }
+    });
+var t=0;
+ function second() {  
+  if(t==0) { t=1;
+  var first =document.getElementById("first");
+   var second =document.getElementById("second");
+  first.className = first.className.replace(" activ", "");
+ second.className += " activ";
+ document.getElementById("desc").style.display="block";
+ document.getElementById("first1").style.display="none"; }
+};
+ function first() { 
+  if(t==1) {  t=0;
+  var first =document.getElementById("first");
+   var second =document.getElementById("second");
+  second.className = second.className.replace(" activ", "");
+ first.className += " activ";
+ document.getElementById("desc").style.display="none";
+ document.getElementById("first1").style.display="block"; }
+};
+
+    </script>
+  </html>
