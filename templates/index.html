@@ -1,4 +1,5 @@
-{% extends "category_header.html" %}
+{% extends "category_header.html" %}  {% block content %}
+
 <section id="why-us" class="why-us">
       <div class="container">
 
@@ -117,61 +118,5 @@
     
 
 </div>
-</body>
-<script type="text/javascript">
-  // Initialize Firebase
-  
-  var storage = firebase.storage();
-        function save(){
-            var image=document.getElementById("imageUpload").files[0];
-            var imagename=image.name;
-            var storageRef = storage.ref('images/'+imagename);
-            var uploadtask=storageRef.put(image);
-            uploadtask.on('state_changed',function(snapshot){
-                var progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-                console.log("upload is "+progress+" done");
-            },function(error){
-                console.log(error.message);
-            },function(){
-                uploadtask=snapshot.ref.getDownloadURL().then(function(downloadURL){
-                    console.log(downloadURL);
-                });
-            });
-        }
-        firebase.auth().onAuthStateChanged(function(user){ 
-       if (user) { 
-  // User is signed in.
-        var id= user.uid;
-        
-        var ref = firebase.database().ref();
-        firebase.database().ref('/users/' + id).once('value').then((snapshot) => {
-           document.getElementById('name').innerHTML = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-        document.getElementById('email').innerHTML = user.email;
-        document.getElementById('age').innerHTML = (snapshot.val() && snapshot.val().age) || 'Anonymous';
-        document.getElementById('sex').innerHTML = (snapshot.val() && snapshot.val().gender) || 'Anonymous';
-  // ...
-        });
-        } else {
-  // No user is signed in.
-  window.alert("Please Sign-Up first!");
-          }
-    });
- function second() {  
-  var first =document.getElementById("first");
-   var second =document.getElementById("second");
-  first.className = first.className.replace(" activ", "");
- second.className += " activ";
- document.getElementById("desc").style.display="block";
- document.getElementById("first1").style.display="none";
-};
- function first() {  
-  var first =document.getElementById("first");
-   var second =document.getElementById("second");
-  second.className = second.className.replace(" activ", "");
- first.className += " activ";
- document.getElementById("desc").style.display="none";
- document.getElementById("first1").style.display="block";
-};
 
-    </script>
-    </html>
+{% endblock %}
