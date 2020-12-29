@@ -10,9 +10,10 @@
     tools:context=".MainActivity">
     <RelativeLayout
         android:id="@+id/card"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/border_choose"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -35,9 +36,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Signout"/>
+            <TextView
+                android:id="@+id/btn_symptoms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Symptoms,Causes,Diagnosis and Treatment"
+                android:padding="20dp"
+                android:textColor="#915f68"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border_choose"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/signout"/>
             <Button
-                android:layout_below="@id/signout"
-                android:layout_marginTop="50dp"
+                android:layout_below="@id/btn_symptoms"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:padding="10dp"
                 android:background="#915f68"
@@ -47,7 +60,7 @@
                 android:id="@+id/btnchoose"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="choose"/>
+                android:text="choose image"/>
 
 
         </RelativeLayout>
@@ -76,13 +89,12 @@
     <ImageView
 
         android:id="@+id/imgview"
-
         android:layout_width="match_parent"
         android:src="@drawable/back"
         android:scaleType="centerCrop"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_centerVertical="true"
+        android:layout_below="@id/card"
         android:layout_centerHorizontal="true"
         android:layout_height="300dp"/>
 
@@ -120,6 +132,7 @@
         android:layout_marginTop="30dp"
         android:visibility="gone"
         />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

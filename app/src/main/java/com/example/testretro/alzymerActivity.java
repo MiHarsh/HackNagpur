@@ -42,6 +42,7 @@ public class alzymerActivity extends AppCompatActivity {
 
     Button ch,up,Signout;
     TextView result;
+    TextView symptoms;
     ProgressBar progressBar;
     ImageView img;
     String recent="";
@@ -56,6 +57,7 @@ public class alzymerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alzymer);
+        symptoms=findViewById(R.id.btn_symptoms);
         predict=findViewById(R.id.btnpredict);
         progressBar=findViewById(R.id.progress);
         result=findViewById(R.id.result);
@@ -67,6 +69,16 @@ public class alzymerActivity extends AppCompatActivity {
         img=(ImageView)findViewById(R.id.imgview);
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
         Signout=findViewById(R.id.signout);
+        symptoms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://www.mayoclinic.org/diseases-conditions/alzheimers-disease/symptoms-causes/syc-20350447"));
+                startActivity(intent);
+            }
+        });
         predict.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +99,8 @@ public class alzymerActivity extends AppCompatActivity {
         ch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                up.setVisibility(View.VISIBLE);
+                //up.setVisibility(View.VISIBLE);
+                ch.setVisibility(View.GONE);
                 Filechooser();
             }
         });
@@ -110,7 +123,7 @@ public class alzymerActivity extends AppCompatActivity {
     private void sendNetworkRequest(url_model m_url_model)
     {
         Retrofit.Builder builder=new Retrofit.Builder()
-                .baseUrl("https://skinegy-final.herokuapp.com/")
+                .baseUrl("https://medivision-hack.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit=builder.build();
         urlService client =retrofit.create(urlService.class);
@@ -123,6 +136,7 @@ public class alzymerActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     //predict.setVisibility(View.GONE);
                     result.setVisibility(View.VISIBLE);
+
                     result.setText("Result: "+response.body().getResult());
                     //Toast.makeText(alzymerActivity.this, "Result"+response.body().getResult(), Toast.LENGTH_SHORT).show();
                     }
@@ -237,7 +251,7 @@ public class alzymerActivity extends AppCompatActivity {
             imguri=data.getData();
             img.setImageURI(imguri);
         }
-
+        up.setVisibility(View.VISIBLE);
     }
 
 }

@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/custom">
-        <activity android:name=".alzymerActivity"></activity>
+        <activity android:name=".InfoActivity"></activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".alzymerActivity" />
         <activity android:name=".brain_tumorActivity" />
         <activity android:name=".pneumoniaActivity" />
         <activity android:name=".covidActivity" />
