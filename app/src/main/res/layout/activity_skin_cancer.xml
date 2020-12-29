@@ -1,9 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#915f68"
     android:layout_height="match_parent"
-    tools:context=".skin_cancerActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    tools:context=".MainActivity">
+    <RelativeLayout
+        android:id="@+id/card"
+        android:background="@drawable/border_choose"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Skin Cancer"
+                android:textColor="#915f68"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="40dp"
+                android:fontFamily="cursive"/>
+            <Button
+                android:id="@+id/signout"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#915f68"
+                android:background="@drawable/border_signout"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Signout"/>
+            <Button
+                android:layout_below="@id/signout"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
+                android:padding="10dp"
+                android:background="#915f68"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:textColor="#ffffff"
+                android:id="@+id/btnchoose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="choose"/>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <Button
+        android:layout_below="@id/imgview"
+        android:id="@+id/btnupload"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="50dp"
+        android:text="upload"
+        android:padding="20dp"
+        android:textColor="#915f68"
+        android:background="@drawable/border_choose"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/imgview"
+        android:id="@+id/center"/>
+    <ImageView
+
+        android:id="@+id/imgview"
+
+        android:layout_width="match_parent"
+        android:src="@drawable/back"
+        android:scaleType="centerCrop"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="300dp"/>
+
+    <Button
+        android:id="@+id/btnpredict"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="predict"
+        android:padding="20dp"
+        android:layout_marginLeft="40dp"
+        android:textColor="#915f68"
+        android:background="@drawable/border_choose"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:layout_below="@id/imgview"/>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:id="@+id/bottom_navigation"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_navigation"
+        app:labelVisibilityMode="labeled"
+        app:itemTextColor="#915f68"
+        app:itemIconTint="#915f68"
+        android:background="?android:attr/windowBackground"
+        />
+
+
+</RelativeLayout>

@@ -97,6 +97,12 @@
         android:layout_marginTop="50dp"
         android:layout_toRightOf="@id/center"
         android:layout_below="@id/imgview"/>
+    <Button
+        android:id="@+id/alymer_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="alzymer"
+        android:layout_margin="20dp"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:id="@+id/bottom_navigation"

@@ -39,6 +39,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
  Button ch,up,Signout;
+ Button al;
  ImageView img;
  String recent="";
  StorageReference mStorageRef;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        al=findViewById(R.id.alymer_btn);
         predict=findViewById(R.id.btnpredict);
         mAuth=FirebaseAuth.getInstance();
         current_user_id=mAuth.getCurrentUser().getUid();
@@ -61,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
         img=(ImageView)findViewById(R.id.imgview);
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
         Signout=findViewById(R.id.signout);
+        al.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,alzymerActivity.class));
+                finish();
+            }
+        });
         predict.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
