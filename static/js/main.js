@@ -46,8 +46,7 @@ $(document).ready(function () {
                 $('.loader').hide();
                 //  $('#result').fadeIn(600);
                 //$('#result').text(' Result:  ' + data);
-                var header = $('#results thead');
-       var body = $('#results tbody');
+               var body = $('#results tbody');
        
        // Headers
        var keyList = Object.keys(data);
@@ -57,8 +56,8 @@ $(document).ready(function () {
           var d = data[keyList[h]];
           var hTr; 
        $('#results tbody').append(hTr = $('<tr>'));
-          hTr.append($('<td>', { text: keyList[h] }));
-          hTr.append($('<td>', { text: d }));
+          hTr.append($('<td style="border:none;">', { text: keyList[h] }));
+          hTr.append($('<td id="prob" style="border:none;">', { text: d }));
             
        }
                 $('#description').show();
