@@ -44,9 +44,10 @@ $(document).ready(function () {
             success: function (data) {
                 // Get and display the result
                 $('.loader').hide();
-                //  $('#result').fadeIn(600);
+                // $('#results').fadeIn(600);
                 //$('#result').text(' Result:  ' + data);
-               var body = $('#results tbody');
+               var header = $('#results thead');
+       var body = $('#results tbody');
        
        // Headers
        var keyList = Object.keys(data);
@@ -60,6 +61,7 @@ $(document).ready(function () {
           hTr.append($('<td>', { text: d }));
             
        }
+                $('#results').show();
                 $('#description').show();
                 console.log('Success!');
             },
