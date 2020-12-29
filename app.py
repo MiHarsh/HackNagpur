@@ -125,7 +125,7 @@ def upload_alzymer():
 @app.route('/alzymer/predict1', methods=['POST'])
 def upload_alzymer():
     # Get the file from post request
-   if request.method =='POST':
+    if request.method =='POST':
         skin_lesion=request.get_json()
         image_url=skin_lesion['url']
         urllib.request.urlretrieve(image_url, "sample.png")
@@ -136,7 +136,6 @@ def upload_alzymer():
         outs = {}
         for i in range(len(labs)):
             outs[labs[i]]=probs[i]
-    #return outs
     return jsonify({'result':outs})
     
 @app.route('/pneumonia/predict', methods=['POST'])
