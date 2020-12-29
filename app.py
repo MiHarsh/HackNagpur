@@ -7,7 +7,8 @@ import re
 import numpy as np
 import torch
 from flask import jsonify
-from six.moves import urllib
+# from six.moves import urllib
+import urllib.request
 from PIL import Image
 import albumentations as aug
 from efficientnet_pytorch import EfficientNet
