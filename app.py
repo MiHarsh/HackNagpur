@@ -55,8 +55,9 @@ def model_predict(file, model):
     image = np.transpose(image, (2, 0, 1)).astype(np.float32)
     image = torch.tensor([image], dtype=torch.float)
     preds = model(image)
-    preds = np.argmax(preds.detach().numpy())
-    return preds
+    probs  = preds.detach().numpy()[0]
+    probs = np.exp(probs)/np.sum(np.exp(probs))
+    return probs
 
 @app.route('/')
 def home():
@@ -112,63 +113,91 @@ def upload_alzymer():
     # Get the file from post request
     f = request.files['file']
     # Make prediction
-    preds = model_predict(f, model_alzheimer)
-    result = labels['alzheimer'][preds]            
-    return result
+    probs = model_predict(f, model_alzheimer)
+    labs = labels['alzheimer']
+    probs = ["%.4f" % x for x in probs]
+    outs = {}
+    for i in range(len(labs)):
+        outs[labs[i]]=probs[i]
+    return outs
     
 @app.route('/pneumonia/predict', methods=['POST'])
 def upload_pneumonia():
     # Get the file from post request
     f = request.files['file']
     # Make prediction
-    preds = model_predict(f, model_pneumonia)
-    result = labels['pneumonia'][preds]            
-    return result
+    probs = model_predict(f, model_pneumonia)
+    labs = labels['pneumonia']           
+    probs = ["%.4f" % x for x in probs]
+    outs = {}
+    for i in range(len(labs)):
+        outs[labs[i]]=probs[i]
+    return outs
     
 @app.route('/aptos/predict', methods=['POST'])
 def upload_aptos():
     # Get the file from post request
     f = request.files['file']
     # Make prediction
-    preds = model_predict(f, model_aptos)
-    result = labels['aptos'][preds]            
-    return result
+    probs = model_predict(f, model_aptos)
+    labs = labels['aptos']           
+    probs = ["%.4f" % x for x in probs]
+    outs = {}
+    for i in range(len(labs)):
+        outs[labs[i]]=probs[i]
+    return outs
     
 @app.route('/braintumor/predict', methods=['POST'])
 def upload_braintumor():
     # Get the file from post request
     f = request.files['file']
     # Make prediction
-    preds = model_predict(f, model_tumor)
-    result = labels['braintumor'][preds]            
-    return result
+    probs = model_predict(f, model_tumor)
+    labs = labels['braintumor']        
+    probs = ["%.4f" % x for x in probs]
+    outs = {}
+    for i in range(len(labs)):
+        outs[labs[i]]=probs[i]
+    return outs
     
 @app.route('/skincancer/predict', methods=['POST'])
 def upload_skincancer():
     # Get the file from post request
     f = request.files['file']
     # Make prediction
-    preds = model_predict(f, model_canc)
-    result = labels['skincancer'][preds]            
-    return result
+    probs = model_predict(f, model_canc)
+    labs = labels['skincancer']      
+    probs = ["%.4f" % x for x in probs]
+    outs = {}
+    for i in range(len(labs)):
+        outs[labs[i]]=probs[i]
+    return outs
     
 @app.route('/covid/predict', methods=['POST'])
 def upload_covid():
     # Get the file from post request
     f = request.files['file']
     # Make prediction
-    preds = model_predict(f, model_covid)
-    result = labels['covid'][preds]            
-    return result
+    probs = model_predict(f, model_covid)
+    labs = labels['covid']          
+    probs = ["%.4f" % x for x in probs]
+    outs = {}
+    for i in range(len(labs)):
+        outs[labs[i]]=probs[i]
+    return outs
     
 @app.route('/breastcancer/predict', methods=['POST'])
 def upload_breastcancer():
     # Get the file from post request
     f = request.files['file']
     # Make prediction
-    preds = model_predict(f, model_breast)
-    result = labels['breast'][preds]            
-    return result
+    probs = model_predict(f, model_breast)
+    labs = labels['breast']       
+    probs = ["%.4f" % x for x in probs]
+    outs = {}
+    for i in range(len(labs)):
+        outs[labs[i]]=probs[i]
+    return outs
 
 
 if __name__ == '__main__':
