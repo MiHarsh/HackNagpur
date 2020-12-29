@@ -6,6 +6,8 @@ import glob
 import re
 import numpy as np
 import torch
+from flask import jsonify
+from six.moves import urllib
 from PIL import Image
 import albumentations as aug
 from efficientnet_pytorch import EfficientNet
@@ -120,6 +122,22 @@ def upload_alzymer():
     for i in range(len(labs)):
         outs[labs[i]]=probs[i]
     return outs
+@app.route('/alzymer/predict1', methods=['POST'])
+def upload_alzymer():
+    # Get the file from post request
+   if request.method =='POST':
+        skin_lesion=request.get_json()
+        image_url=skin_lesion['url']
+        urllib.request.urlretrieve(image_url, "sample.png")
+    # Make prediction
+    probs = model_predict("sample.png", model_alzheimer)
+    labs = labels['alzheimer']
+    probs = ["%.4f" % x for x in probs]
+    outs = {}
+    for i in range(len(labs)):
+        outs[labs[i]]=probs[i]
+    #return outs
+    return jsonify({'result':outs})
     
 @app.route('/pneumonia/predict', methods=['POST'])
 def upload_pneumonia():
