@@ -51,7 +51,7 @@
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New to Skinegy? Register."/>
+        android:text="New to Medivision? Register."/>
     <ProgressBar
         android:id="@+id/progress_login"
         android:layout_width="wrap_content"

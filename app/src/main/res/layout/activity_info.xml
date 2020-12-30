@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textColor="#915f68"
-            android:text="Medvision aims at providing quick diagnosis for about seven very severe problems,common in India.
+            android:text="Medivision aims at providing quick diagnosis for about seven very severe problems,common in India.
 It provides diagnosis of Alzheimer,Brain Tumor,Breast Cancer,Covid-19,Eye blindness,Pneumonia and skin cancer
 .We believe that EARLY DIAGNOSIS AND CORRECT TREATMENT can help Indians grow healthy and live longer!"/>
     </LinearLayout>
