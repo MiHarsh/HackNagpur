@@ -138,7 +138,7 @@ def upload_alzymer1():
         outs = {}
         for i in range(len(labs)):
             outs[labs[i]]=probs[i]
-    return jsonify({'result':outs})
+    return outs
     
 @app.route('/pneumonia/predict', methods=['POST'])
 def upload_pneumonia():
