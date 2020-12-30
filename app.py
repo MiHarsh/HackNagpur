@@ -45,7 +45,7 @@ model_pneumonia.eval()
 
 
 def model_predict(file, model):
-    image = Image.open(file)
+    image = Image.open(file).convert("RGB")
     image = np.array(image)
     transforms = aug.Compose([
             aug.Resize(224,224),
