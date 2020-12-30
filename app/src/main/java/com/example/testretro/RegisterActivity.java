@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
         userRef= FirebaseDatabase.getInstance().getReference().child("Users");
         if(mAuth.getCurrentUser()!=null)
         {
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(),SplashScreenActivity.class));
             finish();
         }
 
