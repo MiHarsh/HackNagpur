@@ -196,7 +196,7 @@ def upload_aptos1():
         outs = {}
         for i in range(len(labs)):
             outs[labs[i]]=probs[i]
-    return jsonify({'result':outs})
+    return outs
 
 @app.route('/braintumor/predict', methods=['POST'])
 def upload_braintumor():
@@ -225,7 +225,7 @@ def upload_braintumor1():
         outs = {}
         for i in range(len(labs)):
             outs[labs[i]]=probs[i]
-    return jsonify({'result':outs})
+    return outs
 
 @app.route('/skincancer/predict', methods=['POST'])
 def upload_skincancer():
@@ -254,7 +254,7 @@ def upload_skincancer1():
         outs = {}
         for i in range(len(labs)):
             outs[labs[i]]=probs[i]
-    return jsonify({'result':outs})
+    return outs
 
 @app.route('/covid/predict', methods=['POST'])
 def upload_covid():
@@ -283,7 +283,7 @@ def upload_covid1():
         outs = {}
         for i in range(len(labs)):
             outs[labs[i]]=probs[i]
-    return jsonify({'result':outs})
+    return outs
 
 @app.route('/breastcancer/predict', methods=['POST'])
 def upload_breastcancer():
@@ -312,7 +312,7 @@ def upload_breastcancer1():
         outs = {}
         for i in range(len(labs)):
             outs[labs[i]]=probs[i]
-    return jsonify({'result':outs})
+    return outs
 
 if __name__ == '__main__':
     app.run(debug=True)
