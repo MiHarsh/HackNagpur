@@ -5,7 +5,7 @@ An AI solution for early diagnosis of seven severe diseases namely Alzheimer,Bra
 
 Website link:
 
-Android APK of the application:
+Android APK of the application[link]: https://drive.google.com/file/d/1oDj1ty8Y23ajiSEP4Qx6B5MXzLFFi04b/view?usp=sharing
 
 note: "main" branch code includes the web and backend(flask) part.Code in branch "android" corresponds to the android part.
 
