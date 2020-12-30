@@ -12,7 +12,7 @@ note: "main" branch code includes the web and backend(flask) part.Code in branch
 Training ML models
 Used Pytorch-fanatics[link]-https://github.com/MiHarsh/Pytorch_Fanatics
 
-#Dataset Citation
+# Dataset Citation
 
 For Covid-19 Dataset[link] - https://github.com/ieee8023/covid-chestxray-dataset
 
