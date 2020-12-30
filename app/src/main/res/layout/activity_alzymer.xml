@@ -7,7 +7,7 @@
     android:background="#915f68"
     android:layout_height="match_parent"
 
-    tools:context=".MainActivity">
+    tools:context=".alzymerActivity">
     <RelativeLayout
         android:id="@+id/card"
         android:layout_marginBottom="10dp"
@@ -66,14 +66,21 @@
         </RelativeLayout>
     </RelativeLayout>
 
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_below="@id/card">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <Button
-        android:layout_below="@id/imgview"
         android:id="@+id/btnupload"
         android:layout_marginRight="40dp"
         android:layout_marginTop="50dp"
         android:text="upload"
         android:padding="20dp"
+        android:layout_below="@id/imgview"
         android:textColor="#915f68"
         android:background="@drawable/border_choose"
         android:layout_centerHorizontal="true"
@@ -87,14 +94,12 @@
         android:layout_below="@id/imgview"
         android:id="@+id/center"/>
     <ImageView
-
         android:id="@+id/imgview"
         android:layout_width="match_parent"
         android:src="@drawable/back"
         android:scaleType="centerCrop"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_below="@id/card"
         android:layout_centerHorizontal="true"
         android:layout_height="300dp"/>
 
@@ -111,18 +116,66 @@
         android:layout_centerHorizontal="true"
         android:visibility="gone"
         android:layout_below="@id/imgview"/>
+            <LinearLayout
+                android:id="@+id/linear"
+                android:visibility="gone"
+                android:layout_below="@id/imgview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                android:background="@drawable/border_choose"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="22sp"
+                    android:textColor="#915f68"
+                    android:text="Result(Probabilities)"/>
     <TextView
-        android:id="@+id/result"
+        android:id="@+id/result1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Result"
-        android:padding="20dp"
+        android:text="Result(Probabilities)"
+        android:textSize="16sp"
         android:textColor="#915f68"
-        android:visibility="gone"
-        android:background="@drawable/border_choose"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/imgview"/>
+            <TextView
+                android:id="@+id/result2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Result"
+                android:textSize="16sp"
+                android:textColor="#915f68"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/result1"/>
+            <TextView
+                android:id="@+id/result3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Result"
+                android:textColor="#915f68"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/result2"/>
+            <TextView
+                android:id="@+id/result4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Result"
+                android:textSize="16sp"
+                android:textColor="#915f68"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/result3"/>
+            </LinearLayout>
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="wrap_content"
@@ -132,7 +185,8 @@
         android:layout_marginTop="30dp"
         android:visibility="gone"
         />
-
+        </RelativeLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

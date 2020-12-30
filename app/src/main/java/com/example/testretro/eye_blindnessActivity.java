@@ -8,16 +8,21 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,7 +42,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class eye_blindnessActivity extends AppCompatActivity {
+
     Button ch,up,Signout;
+
+    TextView result1,result2,result3,result4,result5;
+    LinearLayout linear;
+
+    TextView symptoms;
+    ProgressBar progressBar;
     ImageView img;
     String recent="";
     StorageReference mStorageRef;
@@ -51,7 +63,20 @@ public class eye_blindnessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eye_blindness);
+        symptoms=findViewById(R.id.btn_symptoms);
         predict=findViewById(R.id.btnpredict);
+        progressBar=findViewById(R.id.progress);
+
+        result1=findViewById(R.id.result1);
+        result2=findViewById(R.id.result2);
+        result3=findViewById(R.id.result3);
+        result4=findViewById(R.id.result4);
+        result5=findViewById(R.id.result5);
+        linear=findViewById(R.id.linear);
+        BottomNavigationView bottomNav =findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListner);
+        //bottomNav.getMenu().findItem(R.id.nav_profile).setChecked(true);
+
         mAuth=FirebaseAuth.getInstance();
         current_user_id=mAuth.getCurrentUser().getUid();
         mStorageRef= FirebaseStorage.getInstance().getReference("Images");
@@ -60,9 +85,21 @@ public class eye_blindnessActivity extends AppCompatActivity {
         img=(ImageView)findViewById(R.id.imgview);
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
         Signout=findViewById(R.id.signout);
+        symptoms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://www.mayoclinic.org/diseases-conditions/retinal-diseases/symptoms-causes/syc-20355825"));
+                startActivity(intent);
+            }
+        });
         predict.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                predict.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
                 url_model user=new url_model(recent);
                 sendNetworkRequest(user);
             }
@@ -78,12 +115,16 @@ public class eye_blindnessActivity extends AppCompatActivity {
         ch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //up.setVisibility(View.VISIBLE);
+                ch.setVisibility(View.GONE);
                 Filechooser();
             }
         });
         up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                up.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
                 if(uploadTask!=null && uploadTask.isInProgress())
                 {
                     Toast.makeText(eye_blindnessActivity.this, "Upload is in progress", Toast.LENGTH_SHORT).show();
@@ -98,7 +139,7 @@ public class eye_blindnessActivity extends AppCompatActivity {
     private void sendNetworkRequest(url_model m_url_model)
     {
         Retrofit.Builder builder=new Retrofit.Builder()
-                .baseUrl("https://skinegy-final.herokuapp.com/")
+                .baseUrl("https://medivision-hack.herokuapp.com/aptos/")
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit=builder.build();
         urlService client =retrofit.create(urlService.class);
@@ -108,7 +149,19 @@ public class eye_blindnessActivity extends AppCompatActivity {
             public void onResponse(Call<url_model> call, Response<url_model> response) {
                 if(response.body()!=null)
                 {
-                    Toast.makeText(eye_blindnessActivity.this, "Result"+response.body().getResult(), Toast.LENGTH_SHORT).show();}
+                    progressBar.setVisibility(View.GONE);
+                    //predict.setVisibility(View.GONE);
+
+                    linear.setVisibility(View.VISIBLE);
+
+                    result1.setText("Mild Diabetic Retinopathy: "+response.body().getMild_Diabetic_Retinopathy());
+                    result2.setText("Moderate Diabetic Retinopathy: "+response.body().getModerate_Diabetic_Retinopathy());
+                    result3.setText("No Diabetic Retinopathy: "+response.body().getNo_Diabetic_Retinopathy());
+                    result4.setText("Proliferative Diabetic Retinopathy: "+response.body().getProliferative_Diabetic_Retinopathy());
+                    result5.setText("Severe Diabetic Retinopathy: "+response.body().getSevere_Diabetic_Retinopathy());
+
+                    //Toast.makeText(alzymerActivity.this, "Result"+response.body().getResult(), Toast.LENGTH_SHORT).show();
+                }
                 else {
                     Toast.makeText(eye_blindnessActivity.this, "Not Working", Toast.LENGTH_SHORT).show();
                 }
@@ -117,7 +170,10 @@ public class eye_blindnessActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<url_model> call, Throwable t) {
-                Toast.makeText(eye_blindnessActivity.this, "something went wrong", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+                up.setVisibility(View.VISIBLE);
+                Toast.makeText(getApplicationContext(), "something went wrong..Try again!", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(eye_blindnessActivity.this, "something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -145,7 +201,7 @@ public class eye_blindnessActivity extends AppCompatActivity {
                                 UsersRef.child(current_user_id).updateChildren(m).addOnCompleteListener(new OnCompleteListener() {
                                     @Override
                                     public void onComplete(@NonNull Task task) {
-                                        Toast.makeText(eye_blindnessActivity.this, "Added", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(alzymerActivity.this, "Added", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                 Calendar calFordDate = Calendar.getInstance();
@@ -181,10 +237,11 @@ public class eye_blindnessActivity extends AppCompatActivity {
                                         .addOnCompleteListener(new OnCompleteListener() {
                                             @Override
                                             public void onComplete(@NonNull Task task) {
-                                                Toast.makeText(eye_blindnessActivity.this, "Done", Toast.LENGTH_SHORT).show();
+                                                //Toast.makeText(alzymerActivity.this, "Done", Toast.LENGTH_SHORT).show();
                                             }
                                         });
-
+                                progressBar.setVisibility(View.GONE);
+                                predict.setVisibility(View.VISIBLE);
                                 //Toast.makeText(MainActivity.this, downloadUrl, Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -219,7 +276,45 @@ public class eye_blindnessActivity extends AppCompatActivity {
             imguri=data.getData();
             img.setImageURI(imguri);
         }
+        up.setVisibility(View.VISIBLE);
+    }
+    private BottomNavigationView.OnNavigationItemSelectedListener
+            navListner=
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+                    switch (item.getItemId()){
+                        case R.id.nav_home:
+                            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(intent);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            finish();
+                            return true;
+
+                        case R.id.nav_profile:
+                            Intent Lintent=new Intent(getApplicationContext(),ProfileActivity.class);
+                            Lintent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(Lintent);
+                            finish();
+                            return true;
+
+                        case R.id.nav_info:
+                            Intent Lintent1=new Intent(getApplicationContext(),InfoActivity.class);
+                            Lintent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(Lintent1);
+                            finish();
+                            return true;
+                    }
+
+                    return false;
+                }
+            };
+    @Override
+    public void onBackPressed() {
+
+        startActivity(new Intent(this,MainActivity.class));
+        this.finish();
     }
 
 }
