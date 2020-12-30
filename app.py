@@ -6,6 +6,9 @@ import glob
 import re
 import numpy as np
 import torch
+from flask import jsonify
+# from six.moves import urllib
+import urllib.request
 from PIL import Image
 import albumentations as aug
 from efficientnet_pytorch import EfficientNet
@@ -120,6 +123,22 @@ def upload_alzymer():
     for i in range(len(labs)):
         outs[labs[i]]=probs[i]
     return outs
+
+@app.route('/alzymer/predict1', methods=['POST'])
+def upload_alzymer1():
+    # Get the file from post request
+    if request.method =='POST':
+        skin_lesion=request.get_json()
+        image_url=skin_lesion['url']
+        urllib.request.urlretrieve(image_url, "sample.png")
+        # Make prediction
+        probs = model_predict("sample.png", model_alzheimer)
+        labs = labels['alzheimer']
+        probs = ["%.4f" % x for x in probs]
+        outs = {}
+        for i in range(len(labs)):
+            outs[labs[i]]=probs[i]
+    return outs
     
 @app.route('/pneumonia/predict', methods=['POST'])
 def upload_pneumonia():
@@ -133,7 +152,23 @@ def upload_pneumonia():
     for i in range(len(labs)):
         outs[labs[i]]=probs[i]
     return outs
-    
+ 
+@app.route('/pneumonia/predict1', methods=['POST'])
+def upload_pneumonia1():
+    # Get the file from post request
+    if request.method =='POST':
+        skin_lesion=request.get_json()
+        image_url=skin_lesion['url']
+        urllib.request.urlretrieve(image_url, "sample.png")
+        # Make prediction
+        probs = model_predict("sample.png", model_pneumonia)
+        labs = labels['pneumonia']
+        probs = ["%.4f" % x for x in probs]
+        outs = {}
+        for i in range(len(labs)):
+            outs[labs[i]]=probs[i]
+    return outs
+
 @app.route('/aptos/predict', methods=['POST'])
 def upload_aptos():
     # Get the file from post request
@@ -146,7 +181,23 @@ def upload_aptos():
     for i in range(len(labs)):
         outs[labs[i]]=probs[i]
     return outs
-    
+ 
+@app.route('/aptos/predict1', methods=['POST'])
+def upload_aptos1():
+    # Get the file from post request
+    if request.method =='POST':
+        skin_lesion=request.get_json()
+        image_url=skin_lesion['url']
+        urllib.request.urlretrieve(image_url, "sample.png")
+        # Make prediction
+        probs = model_predict("sample.png", model_aptos)
+        labs = labels['aptos']
+        probs = ["%.4f" % x for x in probs]
+        outs = {}
+        for i in range(len(labs)):
+            outs[labs[i]]=probs[i]
+    return outs
+
 @app.route('/braintumor/predict', methods=['POST'])
 def upload_braintumor():
     # Get the file from post request
@@ -159,7 +210,23 @@ def upload_braintumor():
     for i in range(len(labs)):
         outs[labs[i]]=probs[i]
     return outs
-    
+
+@app.route('/braintumor/predict1', methods=['POST'])
+def upload_braintumor1():
+    # Get the file from post request
+    if request.method =='POST':
+        skin_lesion=request.get_json()
+        image_url=skin_lesion['url']
+        urllib.request.urlretrieve(image_url, "sample.png")
+        # Make prediction
+        probs = model_predict("sample.png", model_tumor)
+        labs = labels['braintumor']
+        probs = ["%.4f" % x for x in probs]
+        outs = {}
+        for i in range(len(labs)):
+            outs[labs[i]]=probs[i]
+    return outs
+
 @app.route('/skincancer/predict', methods=['POST'])
 def upload_skincancer():
     # Get the file from post request
@@ -172,7 +239,23 @@ def upload_skincancer():
     for i in range(len(labs)):
         outs[labs[i]]=probs[i]
     return outs
-    
+
+@app.route('/skincancer/predict1', methods=['POST'])
+def upload_skincancer1():
+    # Get the file from post request
+    if request.method =='POST':
+        skin_lesion=request.get_json()
+        image_url=skin_lesion['url']
+        urllib.request.urlretrieve(image_url, "sample.png")
+        # Make prediction
+        probs = model_predict("sample.png", model_canc)
+        labs = labels['skincancer']
+        probs = ["%.4f" % x for x in probs]
+        outs = {}
+        for i in range(len(labs)):
+            outs[labs[i]]=probs[i]
+    return outs
+
 @app.route('/covid/predict', methods=['POST'])
 def upload_covid():
     # Get the file from post request
@@ -185,7 +268,23 @@ def upload_covid():
     for i in range(len(labs)):
         outs[labs[i]]=probs[i]
     return outs
-    
+
+@app.route('/covid/predict1', methods=['POST'])
+def upload_covid1():
+    # Get the file from post request
+    if request.method =='POST':
+        skin_lesion=request.get_json()
+        image_url=skin_lesion['url']
+        urllib.request.urlretrieve(image_url, "sample.png")
+        # Make prediction
+        probs = model_predict("sample.png", model_covid)
+        labs = labels['covid']
+        probs = ["%.4f" % x for x in probs]
+        outs = {}
+        for i in range(len(labs)):
+            outs[labs[i]]=probs[i]
+    return outs
+
 @app.route('/breastcancer/predict', methods=['POST'])
 def upload_breastcancer():
     # Get the file from post request
@@ -199,6 +298,21 @@ def upload_breastcancer():
         outs[labs[i]]=probs[i]
     return outs
 
+@app.route('/breastcancer/predict1', methods=['POST'])
+def upload_breastcancer1():
+    # Get the file from post request
+    if request.method =='POST':
+        skin_lesion=request.get_json()
+        image_url=skin_lesion['url']
+        urllib.request.urlretrieve(image_url, "sample.png")
+        # Make prediction
+        probs = model_predict("sample.png", model_breast)
+        labs = labels['breast']
+        probs = ["%.4f" % x for x in probs]
+        outs = {}
+        for i in range(len(labs)):
+            outs[labs[i]]=probs[i]
+    return outs
 
 if __name__ == '__main__':
     app.run(debug=True)
