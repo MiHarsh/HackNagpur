@@ -3,7 +3,7 @@ When its about your health,Medivision passionately lends itself!
 
 An AI solution for early diagnosis of seven severe diseases namely Alzheimer,Brain Tumor,Breast Cancer,Covid-19,Eye blindness,Pneumonia and skin cancer.It is deployed via a website and an android application.
 
-Website link:
+Website link:https://medivision0.herokuapp.com/
 
 Android APK of the application[link]: https://drive.google.com/file/d/1lTd4zzTwzKQNske3hUgzMIle_3EccQW-/view?usp=sharing
 
